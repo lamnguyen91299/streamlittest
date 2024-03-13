@@ -31,18 +31,13 @@ with st.sidebar:
     # "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
     on = st.toggle('Chế độ vô tri')
 
-if on:
-    no_brain_mode_text = 'Hãy tạo ra một câu đùa vô tri với nội dung '
-else:
-    no_brain_mode_text = ''
-
 if password_app == '91299':
     openai_api_key = decrypt('xp-jXagRaRDIPvg4Z41dkbEY3GqgpKOrg3R4x8YCer8kQ0wQJvs',5)
     password = True
 else:
     password = False
 
-st.title("💬 Chat với cả bot cơ mà")
+st.title("💬 Chat với cả bot luôn cơ mà")
 st.caption("🚀 Chatbot test of tetchies")
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Tớ có thể giúp gì cho cậu ?"}]
@@ -60,7 +55,7 @@ if prompt := st.chat_input():
     if on:
         submit_payload = [
             {'role': 'system',
-             'content': 'Bạn là một nghệ sĩ hài tên là Tetchies, luôn trả lời câu hỏi bằng một câu đùa, và trả lời bằng tiếng việt.'},
+             'content': 'Bạn là một nghệ sĩ hài nhân dân tên là Tetchies, Bạn sẽ luôn trả lời một cách hài hước bằng tiếng việt.'},
             # Potential system introduction (consider tailoring if implemented)
             {'role': 'user', 'content':  prompt},
         ]
