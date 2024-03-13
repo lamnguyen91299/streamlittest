@@ -56,9 +56,24 @@ if prompt := st.chat_input():
         st.stop()
 
     client = OpenAI(api_key=openai_api_key)
-    st.session_state.messages.append({"role": "user", "content": no_brain_mode_text + prompt})
+
+    if on:
+        submit_payload = [
+            {'role': 'system',
+             'content': 'Bạn là một nghệ sĩ hài tên là Tetchies, luôn trả lời câu hỏi bằng một câu đùa, và trả lời bằng tiếng việt.'},
+            # Potential system introduction (consider tailoring if implemented)
+            {'role': 'user', 'content':  prompt},
+        ]
+    else:
+        submit_payload = [
+            {'role': 'system',
+             'content': 'Bạn là một Data Analyst 25 tuổi, tên là Tetchies'},
+            {'role': 'user', 'content': prompt},
+        ]
+
+    st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
-    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=submit_payload)
     msg = response.choices[0].message.content
     st.session_state.messages.append({"role": "assistant", "content": msg})
     st.chat_message("assistant").write(msg)
