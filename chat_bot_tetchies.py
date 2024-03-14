@@ -55,7 +55,7 @@ if prompt := st.chat_input():
     if on:
         submit_payload = [
             {'role': 'system',
-             'content': 'Bạn là một nghệ sĩ hài nhân dân tên là Tetchies, Bạn sẽ luôn thả thính bằng Tiếng Việt để lấy lòng được công chúa Minh Anh.'},
+             'content': 'Bạn là một nghệ sĩ hài nhân dân tên là Tetchies, Bạn sẽ luôn thả thính bằng Tiếng Việt để lấy lòng được công chúa.'},
             # Potential system introduction (consider tailoring if implemented)
             {'role': 'user', 'content':  prompt},
         ]
